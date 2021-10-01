@@ -62,7 +62,16 @@ def cbtnPushed():
     inputOutput.delete(0, END)
     hidden.config(text=0)
     num1 = 0
-
+    
+def equalbtnPushed():
+    global num1
+    num1 = inputOutput.get()
+    if num1 == "":
+        num1 = "0"
+        hidden.config(text=num1)
+    else:
+        hidden.config(text=num1)
+    
 inputOutput = Entry(calculator , text=0, width=50,font=19)
 hidden = Label(calculator, text=0, width=50, height=2, bg="grey",border=0, font=20)
 button9 = Button(calculator, text="9", command=lambda:btnPushed("9"), width=15, height=3)
@@ -80,7 +89,7 @@ addBtn = Button(calculator, text="+", command=lambda:addbtnPushed(), width=15, h
 subBtn = Button(calculator, text="-", command=lambda:subbtnPushed(), width=15, height=3)
 divBtn = Button(calculator, text="/", command=lambda:divbtnPushed(), width=15, height=3)
 mulBtn = Button(calculator, text="*", command=lambda:mulbtnPushed(), width=15, height=3)
-equalBtn = Button(calculator, text="=", command=lambda:btnPushed("0"), width=15, height=3)
+equalBtn = Button(calculator, text="=", command=lambda:equalbtnPushed(), width=15, height=3)
 clear = Button(calculator, text="clear", command=lambda:cbtnPushed(), width=15, height=3)
 
 
