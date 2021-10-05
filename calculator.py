@@ -1,21 +1,21 @@
-#done with tkinter gui
 from tkinter import *
 calculator = Tk()
 calculator.title("Calculator Isaiahekundayo17@gmail.com")
-calculator.geometry('450x350')
+calculator.geometry('490x400')
 calculator['bg']= "grey"
 
 num = ""
 num1 = 0
 num2 = None
-
+operator = ""
 
 def btnPushed(text):
     inputOutput.insert(END,text)
 
 
 def addbtnPushed():
-    global num1
+    global num1, operator
+    operator = "+"
     storeNum = inputOutput.get()
     num1 = float(num1)
     num1 += float(inputOutput.get())
@@ -26,7 +26,8 @@ def addbtnPushed():
 
 
 def subbtnPushed():
-    global num1
+    global num1, operator
+    operator = "-"
     storeNum = inputOutput.get()
     num1 = float(num1)
     num1 -= float(inputOutput.get())
@@ -37,7 +38,8 @@ def subbtnPushed():
 
 
 def divbtnPushed():
-    global num1
+    global num1, operator
+    operator = "/"
     storeNum = inputOutput.get()
     num1 = float(num1)
     num1 /= float(inputOutput.get())
@@ -49,7 +51,8 @@ def divbtnPushed():
 
 
 def mulbtnPushed():
-    global num1
+    global num1, operator
+    operator = "*"
     storeNum = inputOutput.get()
     num1 = float(num1)
     num1 *= float(inputOutput.get())
@@ -63,17 +66,25 @@ def cbtnPushed():
     inputOutput.delete(0, END)
     hidden.config(text=0)
     num1 = 0
-    
 def equalbtnPushed():
-    global num1
-    num1 = inputOutput.get()
-    if num1 == "":
-        num1 = "0"
-        hidden.config(text=num1)
-    else:
-        hidden.config(text=num1)
-    
-inputOutput = Entry(calculator , text=0, width=50,font=19)
+    global num1, operator, num2
+    num2 =  inputOutput.get()
+    num1 = float(num1)
+    num2 = float(num2)
+    if operator == "+":
+        num1 += num2
+    if operator == "-":
+        num1 -= num2
+    if operator == "/":
+        num1 /= num2
+    if operator == "*":
+        num1 *= num2
+    num1 = str(num1)
+    inputOutput.delete(0, END)
+    inputOutput.insert(0, num1) 
+
+
+inputOutput = Entry(calculator , text=0, width=50,font=19, highlightthickness= 20)
 hidden = Label(calculator, text=0, width=50, height=2, bg="grey",border=0, font=20)
 button9 = Button(calculator, text="9", command=lambda:btnPushed("9"), width=15, height=3)
 button8 = Button(calculator, text="8", command=lambda:btnPushed("8"), width=15, height=3)
